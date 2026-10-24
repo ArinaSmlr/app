@@ -15,7 +15,7 @@
 
 ## Как запустить
 ```bash
-git clone <ссылка на репозиторий>
+git clone (https://github.com/ArinaSmlr/app)
 cd fintech_theme3
 pip install -r requirements.txt
 python -m src.train
@@ -41,9 +41,7 @@ python -m src.train
 pip install -r requirements.txt
 streamlit run app.py
 ```
-Публикация по ссылке (бесплатно): репозиторий на GitHub → [share.streamlit.io](https://share.streamlit.io)
-→ «Create app» → выбрать репозиторий, ветку `main`, файл `app.py` → «Deploy».
-Для работы приложения в репозитории должен лежать `models/model.pkl`.
+Ссылка на приложение: https://8vosusjctabysxqfswfdbm.streamlit.app/
 
 ## Прогноз для новых данных (из кода)
 ```python
