@@ -1,0 +1,39 @@
+variant: 3
+task: "Прогноз направления доходности акций на 5 торговых дней вперёд"
+random_state: 42
+data:
+  tickers: [AAPL, MSFT, AMZN, GOOGL, NVDA, JPM, KO, WMT, XOM, JNJ]
+  start: "2015-01-01"
+  end: "2026-10-15"
+  target: "sign of 5-day forward return (shift(-5))"
+  split: {train: 0.70, valid: 0.15, test: 0.15, gap_days: 5}
+logreg:
+  C_grid: [0.0001, 0.001, 0.01, 0.1, 1]
+  best_C: 0.0001
+lgbm_base_params:
+  learning_rate: 0.01
+  subsample: 0.8
+  subsample_freq: 1
+  colsample_bytree: 0.8
+  random_state: 42
+lgbm_search_grid:
+  num_leaves: [7, 15, 31]
+  min_child_samples: [200, 500, 1000]
+  reg_lambda: [0.0, 5.0]
+model:
+  name: LightGBM
+  params:
+    n_estimators: 65
+    learning_rate: 0.01
+    num_leaves: 7
+    min_child_samples: 1000
+    reg_lambda: 0.0
+    subsample: 0.8
+    subsample_freq: 1
+    colsample_bytree: 0.8
+    random_state: 42
+  validation_metrics: {ROC-AUC: 0.5356, Gini: 0.0712}
+strategy:
+  threshold: 0.5815
+  rebalance_days: 5
+  fee: 0.001
